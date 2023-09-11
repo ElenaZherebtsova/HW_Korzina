@@ -11,25 +11,23 @@ import pro.sky.HWKorzina.Service.TovarService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/store/order")
+@RequestMapping("/order")
 public class TovarController {
     private TovarService tovarService;
 
     public TovarController(TovarService tovarService) {
+
         this.tovarService = tovarService;
     }
 
     @GetMapping("/add")
     public Tovar addTovar(@RequestParam int tovarID,
-                          @RequestParam String tovarName,
-                          @RequestParam double tovarPrice,
-                          @RequestParam int tovarQuantity) {
-        return tovarService.addTovar(tovarID, tovarName,
-                tovarPrice, tovarQuantity);
+                          @RequestParam String tovarName) {
+        return tovarService.addTovar(tovarID, tovarName);
     }
 
-    @GetMapping
-    public Collection<Tovar> printAll () {
+    @GetMapping("/get")
+    public Collection<Tovar> printAll() {
         return tovarService.printAll();
     }
 }
