@@ -3,33 +3,26 @@ package pro.sky.HWKorzina.Service;
 import org.springframework.stereotype.Service;
 import pro.sky.HWKorzina.DTO.Tovar;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Service
 public class TovarServiceImpl implements TovarService {
-    private Map<Integer, Tovar> storage;
 
-    public TovarServiceImpl() {
+    private final Tovar tovar;
 
-        this.storage = new HashMap<>();
+    public TovarServiceImpl(Tovar tovar) {
+        this.tovar = tovar;
     }
 
     @Override
-    public Tovar addTovar(int tovarID,
-                          String tovarName) {
-        Tovar newPosition = new Tovar(tovarID, tovarName);
-        storage.put(tovarID, newPosition);
-        return newPosition;
+    public void addTovar(List<Long> items) {
+        items.forEach(it -> tovar.add(it));
     }
-
 
     @Override
-    public Collection<Tovar> printAll() {
-
-        return storage.values();
+    public List<Long> getTovar() {
+        return tovar.get();
     }
-
-
 }
+
+

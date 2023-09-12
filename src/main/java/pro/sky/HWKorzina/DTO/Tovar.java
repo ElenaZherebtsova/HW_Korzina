@@ -1,19 +1,23 @@
 package pro.sky.HWKorzina.DTO;
 
-import java.util.Objects;
+import java.util.*;
+
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.context.annotation.SessionScope;
 
-@Repository
+@Component
 @SessionScope
 public class Tovar {
-    private int tovarID;
-    private String tovarName;
+    private List<Long> tovarID = new ArrayList<>();
 
-    public Tovar(int tovarID, String tovarName) {
-        this.tovarID = tovarID;
-        this.tovarName = tovarName;
-           }
+    public void add(Long id) {
+        tovarID.add(id);
+    }
+
+    public List<Long> get() {
+        return Collections.unmodifiableList(tovarID);
+    }
 
 
 }
